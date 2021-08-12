@@ -6,12 +6,13 @@
 #    By: anclarma <anclarma@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/12 13:07:16 by anclarma          #+#    #+#              #
-#    Updated: 2021/07/28 07:13:13 by anclarma         ###   ########.fr        #
+#    Updated: 2021/08/12 00:16:31 by anclarma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= philo
 C_FILES		= philo.c						\
+			  ft_error.c					\
 			  ft.c							\
 			  secure_atoi.c					\
 			  secure.c						\
@@ -24,18 +25,19 @@ SRCS		= $(addprefix srcs/,$(C_FILES))
 OBJS		= $(SRCS:.c=.o)
 DEPS		= $(OBJS:.o=.d)
 CC			= cc
-CFLAGS		= -Wall -Wextra -Werror -MMD	\
-			  -I ./includes
+CFLAGS		= -Wall -Wextra -Werror
+DEBUG1		= -g3 -fsanitize=leak -fsanitize=undefined -fsanitize=address
+DEBUG2		= -g3 -fsanitize=thread
+CINCLUDES	= -I ./includes
 CLIBS		= -lpthread
 
 all:		$(NAME)
 
--include	$(DEPS)
-.c.o:
-			$(CC) $(CFLAGS) $(CINCLUDES) -c $< -o $(<:.c=.o)
+%.o:%.c
+			$(CC) $(CFLAGS) $(CINCLUDES) -MMD -MP -c $< -o $@
 
 $(NAME):	$(OBJS)
-			$(CC) $(OBJS) $(CFLAGS) $(CLIBS) -o $(NAME)
+			$(CC) $^ $(CFLAGS) $(CLIBS) -o $@
 
 clean:
 			rm -f $(OBJS) $(DEPS)
@@ -44,5 +46,7 @@ fclean:		clean
 			rm -f $(NAME)
 
 re:			fclean all
+
+-include	$(DEPS)
 
 .PHONY:		all clean fclean re

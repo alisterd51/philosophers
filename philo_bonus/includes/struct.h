@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/22 00:42:01 by user42            #+#    #+#             */
-/*   Updated: 2021/07/28 06:24:37 by anclarma         ###   ########.fr       */
+/*   Updated: 2021/08/06 06:27:18 by anclarma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define STRUCT_H
 # include <pthread.h>
 # include <sys/time.h>
+# include <semaphore.h>
 
 typedef struct timeval	t_timeval;
 
@@ -30,19 +31,16 @@ struct	s_arg
 typedef struct s_table	t_table;
 struct	s_table
 {
-	t_timeval		begin;
-	pthread_mutex_t	m_life;
-	pthread_mutex_t	speak;
-	pthread_mutex_t	*fork;
+	sem_t			*m_life;
+	sem_t			*speak;
+	sem_t			*fork;
 	t_arg			arg;
-	int				life;
 };
 
 typedef struct s_philo	t_philo;
 struct	s_philo
 {
 	t_table			*table;
-	pthread_t		thread;
 	t_timeval		begin;
 	t_timeval		begin_eat;
 	t_timeval		begin_sleep;

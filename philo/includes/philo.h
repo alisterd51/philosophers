@@ -6,20 +6,27 @@
 /*   By: anclarma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/22 02:03:10 by anclarma          #+#    #+#             */
-/*   Updated: 2021/07/29 01:48:52 by anclarma         ###   ########.fr       */
+/*   Updated: 2021/08/12 00:16:07 by anclarma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
+# include <stddef.h>
 # include "struct.h"
 
 /*
 ** ft.c
 */
+size_t		ft_strlen(const char *s);
 int			ft_isspace(int c);
 int			ft_isdigit(int c);
 int			ft_atoi(const char *str);
+
+/*
+** ft_error.c
+*/
+int			ft_error(const char *str);
 
 /*
 ** secure_atoi.c

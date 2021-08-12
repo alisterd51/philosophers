@@ -6,7 +6,7 @@
 /*   By: anclarma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/20 14:32:33 by anclarma          #+#    #+#             */
-/*   Updated: 2021/07/27 18:46:04 by anlarma          ###   ########.fr       */
+/*   Updated: 2021/08/12 00:22:52 by anclarma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	secure_atoi(const char *str)
 	size = 0;
 	while (ft_isdigit(*(str + size)))
 		size++;
-	if (size > 10)
+	if (*(str + size) || size > 10)
 		return (0);
 	else if (size == 10 && sign == 1 && check_max(str))
 		return (0);

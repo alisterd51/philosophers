@@ -6,7 +6,7 @@
 /*   By: anclarma <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 17:10:41 by anclarma          #+#    #+#             */
-/*   Updated: 2021/07/29 01:49:24 by anclarma         ###   ########.fr       */
+/*   Updated: 2021/08/12 00:15:12 by anclarma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,12 @@ int	main(int ac, char **av)
 	t_philo		*philo;
 
 	if (check_param(ac - 1, av + 1) || init_table(&table, ac - 1, av + 1))
-		return (1);
+		return (ft_error("Error\n"));
 	philo = init_philo(&table);
 	if (philo == NULL)
 	{
 		free_all(&table, &philo);
-		return (1);
+		return (ft_error("Error\n"));
 	}
 	join_philo(&table, philo);
 	free_all(&table, &philo);
